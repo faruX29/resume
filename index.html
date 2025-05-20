@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ömer Faruk Selçuk's Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button onclick="toggleDarkMode()" id="darkModeBtn">Toggle Dark Mode</button>
+    <div class="container">
+        <div style="text-align: center;">
+            <h1>Ömer Faruk Selçuk</h1>
+            <img src="foto.jpeg" alt="Photo" width="120px">
+        </div>
+
+        <div class="section">
+            <p><b>Phone:</b> +905511124709</p>
+            <p><b>Email:</b> <a href="mailto:selcuks685@gmail.com">selcuks685@gmail.com</a></p>
+            <p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/ömer-faruk-selçuk-5611212a6/" target="_blank">Profil</a></p>
+            <p><b>GitHub:</b> <a href="https://github.com/faruX29" target="_blank">faruX29</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <p>Keçiören Science High School, 90.48 (2018 - 2022)</p>
+            <p>Karabük University, 2.42 (2022 - 2027)</p>
+        </div>
+
+        <div class="section">
+            <h2>Technical Skills</h2>
+            <p><b>Languages:</b> C, C#, Python, Java</p>
+            <p><b>Web:</b> HTML, CSS, JavaScript</p>
+            <p><b>DB:</b> MySQL</p>
+            <p><b>Game Engines:</b> Unity</p>
+            <p><b>Tools:</b> Git, Excel</p>
+        </div>
+
+        <div class="section">
+            <h2>Certificates</h2>
+            <p><b>C Programming Language</b> – BTK Akademi (24.06.2024)</p>
+            <p><b>Unity Game Development</b> – BTK Akademi (24 Aug - 15 Sep 2024)</p>
+            <p><b>Digital Entrepreneurship</b> – Karabük University (14.12.2022)</p>
+        </div>
+
+        <div class="section">
+            <h2>Contact Me</h2>
+            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <label>Name: <input type="text" name="name" required></label><br><br>
+                <label>Email: <input type="email" name="email" required></label><br><br>
+                <label>Message:<br>
+                    <textarea name="message" rows="5" cols="40" required></textarea>
+                </label><br><br>
+                <button type="submit">Send</button>
+                <p id="form-status"></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                status.textContent = "Thanks for your message!";
+                form.reset();
+            } else {
+                status.textContent = "Oops! There was a problem.";
+            }
+        });
+    </script>
+</body>
+</html>
